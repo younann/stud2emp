@@ -96,4 +96,8 @@ router.get('/appo',(req,res)=>{
   res.render('appo')
 })
 
+router.get('/search',  (req, res) => {
+  res.render('search',{code:''})
+})
+
 module.exports = router;
