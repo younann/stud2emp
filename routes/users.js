@@ -92,12 +92,12 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
-router.get('/appo',(req,res)=>{
-  res.render('appo')
+router.get('/appo', (req, res) => {
+  res.render('appo', { user: req.user })
 })
 
-router.get('/search',  (req, res) => {
-  res.render('search',{code:''})
+router.get('/search', (req, res) => {
+  res.render('search', { user: req.user })
 })
 
 module.exports = router;
