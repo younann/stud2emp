@@ -5,6 +5,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const request= require('request');
+const { response, json } = require('express');
 
 
 
@@ -17,6 +18,15 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongoURI;
 
 //test 
+// request("https://api.adzuna.com/v1/api/jobs/us/search/1?&results_per_page=20&content-type=application/json&app_id=8253435f&app_key=b92f732782a93773bccd2db020ac87c1&what=java&where=newyork",
+// (error,response,body)=>{
+//   if(error)
+//   {
+//     console.log("Error here")
+//   }else{
+    
+//   }
+// })
 
 // Connect to MongoDB
 mongoose
