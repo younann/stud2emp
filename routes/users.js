@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const fetch = require('node-fetch');
 // Load User model
 const User = require('../models/User');
 const { forwardAuthenticated } = require('../config/auth');
+const { route } = require('.');
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
@@ -95,9 +97,10 @@ router.get('/logout', (req, res) => {
 router.get('/appo', (req, res) => {
   res.render('appo', { user: req.user })
 })
-
-router.get('/search', (req, res) => {
+router.get('/search',(req,res)=>{
   res.render('search', { user: req.user })
 })
-
+router.get('/emailus',(req,res)=>{
+  res.render('emailus',{user:req.user })
+})
 module.exports = router;

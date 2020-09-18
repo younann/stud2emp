@@ -51,7 +51,7 @@
                     <li class="sidebar-dropdown">
                         <a href="/users/emailus">
                             <i class="fas fa-search-dollar"></i>
-                            <span>Email us</span>
+                            <span>Contact us</span>
                         </a>
                     </li>
                 </ul>
@@ -68,35 +68,9 @@
     <!-- sidebar-wrapper  -->
     <main class="page-content">
         <div class="container-fluid">
-            <h2>Stud2Emp - Search Job</h2>
-            <hr>
-            <div class="row">
-                <div id="form">
-                    <div class="md-form mt-0">
-                        <form class="form-inline active-cyan-4">
-                            <select class="dropdown-item" name="country" id="code">
-                                <option class="dropdown-item" value="null">Select Country</option>
-                                <option class="dropdown-item" value="gb">united kingdom</option>
-                                <option class="dropdown-item" value="us">united states</option>
-                                <option class="dropdown-item" value="at">Austria</option>
-                                <option class="dropdown-item" value="it">Italy</option>
-                                <option class="dropdown-item" value="fr">France</option>
-                            </select>
-                            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Job Title"
-                                id="searchj" aria-label="Search">
-                            <i class="fas fa-search" aria-hidden="true"></i>
-                            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Location"
-                                id="location" aria-label="Search">
-                        </form>
-                        <button class="btn btn-outline-success btn-rounded btn-sm my-0"
-                            onclick="searchit()">Search</button>
-                    </div>
-                </div>
-                <div id="reslut">
-                </div>
-            </div>
-
-            <hr>
+            <h2>Stud2Emp - Contact us </h2>
+            <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+            <div class="elfsight-app-42506a1b-76d1-45c7-b190-5f575a82e8fd"></div>
         </div>
     </main>
     <!-- page-content" -->
@@ -109,32 +83,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-<script type="text/javascript">
-    async function searchit() {
-        const job = document.getElementById("searchj").value
-        const loc = document.getElementById("location").value
-        const code = document.getElementById("code").value
-        const joburi = `https://api.adzuna.com/v1/api/jobs/${code}/search/1?&results_per_page=20&content-type=application/json&app_id=8253435f&app_key=b92f732782a93773bccd2db020ac87c1&what=${job}&where=${loc}`;
-        if (code != "null") {
-            fetch(joburi).then(res => {
-                return res.json()
-            }).then(data => {
-                const job = data.results.map(post => {
-                    return `<div class="card">
-                 <div class="card-body">
-                 <h4 class="card-title text-info" >${post.title}</h4>
-                 <h5>${post.location.display_name}</h5>
-               <p class="card-text">${post.description}</p>
-                <a class="text-primary" href="${post.redirect_url}" target="_blank">View Job</a>
-                </div>
-                 </div>`
-                }).join("");
-                document.querySelector("#reslut").innerHTML = job
-            }).catch(error => { console.log("ERROR IN FETCH") });
-        } else {
-            alert("Please Select Country")
-        }
-
-    }
-
-</script>
