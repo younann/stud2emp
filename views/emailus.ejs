@@ -142,17 +142,6 @@
         }
 
         alret("Thank You For Contacting us. Stud2Emp Staff");  
-        Email.send({
-            Host: "smtp.gmail.com",
-            Username: "younan.n@gmail.com",
-            Password: "nwesre@123",
-            To: 'younan@gmail.com',
-            From: mail,
-            Subject: "Msg from Stud2emp",
-            Body: msg
-        }).then(
-            message => console.log(message)
-        );
         return true;
          
     }
