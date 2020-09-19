@@ -68,14 +68,43 @@
     <!-- sidebar-wrapper  -->
     <main class="page-content">
         <div class="container-fluid">
-            <h2>Stud2Emp - Contact us </h2>
-            <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-            <div class="elfsight-app-42506a1b-76d1-45c7-b190-5f575a82e8fd"></div>
+            <h1>Stud2Emp - Contact us </h1>
+            <div class="alert alert-dismissible alert-warning" id="Valid-msg"></div>
+            <form action="" id="myform" onsubmit = "return validate();">
+                <ul style="list-style: none">
+                    <li>
+                        <div class="form-group">
+                            <label class="col-form-label" for="inputDefault">Full Name</label>
+                            <input type="text" class="form-control" placeholder="Full Name" id="fname">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="Emailinput" aria-describedby="emailHelp"
+                                placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label for="exampleTextarea">Message Text</label>
+                            <textarea class="form-control" id="mTextarea" rows="10"
+                                placeholder="Enter Your Message Here......."></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </li>
+                </ul>
+
+            </form>
         </div>
     </main>
     <!-- page-content" -->
 </div>
 <!-- page-wrapper -->
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -83,3 +112,48 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+<style>
+    #Valid-msg {
+        margin-bottom: 20px;
+        padding: 0px;
+        text-align: center;
+        font-size: 14px;
+        transition: all 0.5s ease;
+    }
+</style>
+<script>
+    function validation() {
+        let fname = document.getElementById("fname").value;
+        let mail = document.getElementById("Emailinput").value;
+        let msg = document.getElementById("mTextarea").value;
+        let vaildmsg = document.getElementById("Valid-msg");
+        
+        if (fname.length < 5) {
+            vaildmsg.style.padding = "10px";
+            let msg = "Please Enter Full Name";
+            vaildmsg.innerText = msg;
+            return false;
+        }
+        if (mail.indexOf("@") == -1 || mail.length < 6) {
+            vaildmsg.style.padding = "10px";
+            let text = "Please Enter valid Email";
+            vaildmsg.innerHTML = text;
+            return false;
+        }
+
+        alret("Thank You For Contacting us. Stud2Emp Staff");  
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "younan.n@gmail.com",
+            Password: "nwesre@123",
+            To: 'younan@gmail.com',
+            From: mail,
+            Subject: "Msg from Stud2emp",
+            Body: msg
+        }).then(
+            message => console.log(message)
+        );
+        return true;
+         
+    }
+</script>
