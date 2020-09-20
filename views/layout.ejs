@@ -521,12 +521,21 @@
   .chiller-theme .sidebar-footer>a:last-child {
     border-right: none;
   }
-
+  .main{
+      display: grid;
+      grid-template-columns: repeat(2,200px);
+  }
+  .openbtn{
+    font-size: larger;
+  }
 </style>
 
 <body>
 
-  <div class="container"><%- body %></div>
+  <<main>
+  <a href="javascript:void(0)" class="openbtn" onclick="closeNav()">open menu</a>
+    <div class="container"><%- body %></div>
+  </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -541,7 +550,7 @@
     function closeNav() {
 
       if (document.getElementById("sidebar").style.width == "15%") {
-        document.getElementById("sidebar").style.width = "5%";
+        document.getElementById("sidebar").style.width = "0%";
 
       } else {
         document.getElementById("sidebar").style.width = "15%";
