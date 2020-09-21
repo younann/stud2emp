@@ -70,26 +70,26 @@
         <div class="container-fluid">
             <h1>Stud2Emp - Contact us </h1>
             <div class="alert alert-dismissible alert-warning" id="Valid-msg"></div>
-            <form action="" id="myform" onsubmit = "return validate();">
+            <form action="https://formspree.io/mgepeaed" method="POST" onsubmit="return validation()" target="_blank">
                 <ul style="list-style: none">
                     <li>
                         <div class="form-group">
                             <label class="col-form-label" for="inputDefault">Full Name</label>
-                            <input type="text" class="form-control" placeholder="Full Name" id="fname">
+                            <input type="text" class="form-control" placeholder="Full Name" id="fname" name="fname" required>
                         </div>
                     </li>
                     <li>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="Emailinput" aria-describedby="emailHelp"
-                                placeholder="Enter email">
+                            <input type="email" class="form-control" id="Emailinput" name="email" aria-describedby="emailHelp"
+                                placeholder="Enter email" required>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                     </li>
                     <li>
                         <div class="form-group">
                             <label for="exampleTextarea">Message Text</label>
-                            <textarea class="form-control" id="mTextarea" rows="10"
+                            <textarea  name="msg"class="form-control" id="mTextarea" rows="10"
                                 placeholder="Enter Your Message Here......."></textarea>
                         </div>
                     </li>
@@ -140,8 +140,15 @@
             vaildmsg.innerHTML = text;
             return false;
         }
-
-        alret("Thank You For Contacting us. Stud2Emp Staff");  
+        if(msg.length<1)
+        {
+            let text="Please Enter a Message";
+            vaildmsg.innerText=text;
+            return false;
+        }
+        else{
+            alert("Thank you , our staff will replay soon .");
+        }
         return true;
          
     }
