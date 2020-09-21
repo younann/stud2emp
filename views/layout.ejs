@@ -521,20 +521,24 @@
   .chiller-theme .sidebar-footer>a:last-child {
     border-right: none;
   }
-  .main{
-      display: grid;
-      grid-template-columns: repeat(2,200px);
+
+  .main {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
   }
-  .openbtn{
+
+  .openbtn {
     font-size: larger;
+    font-weight: bolder;
+    visibility: hidden;
   }
 </style>
 
 <body>
 
-  <<main>
-  <a href="javascript:void(0)" class="openbtn" onclick="closeNav()">open menu</a>
-    <div class="container"><%- body %></div>
+  <main>
+    <a href="javascript:void(0)" class="openbtn" onclick="closeNav()">open menu</a>
+    <div class="container"><%- body %> </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -548,9 +552,9 @@
     crossorigin="anonymous"></script>
   <script>
     function closeNav() {
-
       if (document.getElementById("sidebar").style.width == "15%") {
         document.getElementById("sidebar").style.width = "0%";
+        $(document.getElementById("openbtn")).style.visible;
 
       } else {
         document.getElementById("sidebar").style.width = "15%";
