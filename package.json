@@ -27,8 +27,6 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
     "eslint": "^7.9.0",
     "nodemon": "^1.19.4"
   }
