@@ -537,7 +537,6 @@
 <body>
 
   <main>
-    <a href="javascript:void(0)" class="openbtn" onclick="closeNav()">open menu</a>
     <div class="container"><%- body %> </div>
   </main>
 
@@ -554,7 +553,6 @@
     function closeNav() {
       if (document.getElementById("sidebar").style.width == "20%") {
         document.getElementById("sidebar").style.width = "0%";
-        $(document.getElementById("openbtn")).style.visible;
 
       } else {
         document.getElementById("sidebar").style.width = "20%";

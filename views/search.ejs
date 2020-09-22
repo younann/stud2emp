@@ -5,7 +5,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
             <div class="sidebar-brand">
-                    <a class="btn-sm d-flex align-items-center justify-content-center">Stud2Emp</a>
+                <a class="btn-sm d-flex align-items-center justify-content-center">Stud2Emp</a>
             </div>
             <div class="sidebar-header">
                 <div class="user-pic">
@@ -51,7 +51,7 @@
                     <li class="sidebar-dropdown">
                         <a href="/users/emailus">
                             <i class="fas fa-search-dollar"></i>
-                            <span>Email us</span>
+                            <span>Contact us</span>
                         </a>
                     </li>
                 </ul>
@@ -64,7 +64,8 @@
                 <i class="fas fa-sign-out-alt"> LogOut</i>
             </a>
         </div>
-        <i class="fas fa-bars float-left fixed-top btn-lg" href="javascript:void(0)" class="closebtn" onclick="closeNav()"></i>
+        <i class="fas fa-bars float-left fixed-top btn-lg" href="javascript:void(0)" class="closebtn"
+            onclick="closeNav()"></i>
     </nav>
     <!-- sidebar-wrapper  -->
     <main class="page-content">
@@ -89,12 +90,19 @@
                             <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Location"
                                 id="location" aria-label="Search">
                         </form>
-                        <button class="btn btn-outline-success btn-rounded btn-sm my-0"
-                            onclick="searchit()">Search</button>
+                        <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit"
+                            onsubmit="searchit()" onclick="searchit();">Search</button>
                     </div>
                 </div>
-                <div id="reslut">
 
+                <div id="resluts">
+                    <div class="lds-ellipsis" id="loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="reslut"></div>
                 </div>
             </div>
 
@@ -113,12 +121,18 @@
     crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
+    function unshowloader() { document.getElementById("loader").style.display = "none"; };
+    function showloader() {
+        document.getElementById("loader").style.display = "block";
+    }
+
     async function searchit() {
         const job = document.getElementById("searchj").value
         const loc = document.getElementById("location").value
         const code = document.getElementById("code").value
         const joburi = `https://api.adzuna.com/v1/api/jobs/${code}/search/1?&results_per_page=20&content-type=application/json&app_id=8253435f&app_key=b92f732782a93773bccd2db020ac87c1&what=${job}&where=${loc}`;
         if (code != "null") {
+            showloader();
             fetch(joburi).then(res => {
                 return res.json()
             }).then(data => {
@@ -132,11 +146,85 @@
                 </div>
                  </div>`
                 }).join("");
-                document.querySelector("#reslut").innerHTML = job
+                document.querySelector("#reslut").innerHTML = job;
+                unshowloader();
             }).catch(error => { console.log("ERROR IN FETCH") });
         } else {
             alert("Please Select Country")
         }
-    }
+
+    };
 
 </script>
+<style>
+    .lds-ellipsis {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+
+    .lds-ellipsis div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: rgb(255, 255, 255);
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    .lds-ellipsis div:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+    }
+
+    @keyframes lds-ellipsis1 {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes lds-ellipsis3 {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0);
+        }
+    }
+
+    @keyframes lds-ellipsis2 {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        100% {
+            transform: translate(24px, 0);
+        }
+    }
+
+    #loader {
+        display: none;
+    }
+</style>
