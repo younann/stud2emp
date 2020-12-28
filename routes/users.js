@@ -98,6 +98,7 @@ router.get('/logout', (req, res) => {
 router.get('/appo', (req, res) => {
   res.render('appo', { user: req.user });
 });
+
 router.get('/search',(req,res)=>{
   res.render('search', { user: req.user });
 });
